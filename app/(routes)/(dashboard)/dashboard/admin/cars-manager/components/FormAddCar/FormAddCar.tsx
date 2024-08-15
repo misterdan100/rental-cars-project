@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./FormAddCar.form";
 import { z } from "zod";
+import axios from 'axios'
 
 
 import { Button } from "@/components/ui/button";
@@ -21,10 +22,17 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
+import { FormAddCarProps } from "./FormAddCar.types";
+import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 
-export function FormAddCar() {
+export function FormAddCar(props: FormAddCarProps) {
+  const { setOpenDialog } = props
+
   const [photoUploaded, setPhotoUploaded] = useState(false)
+
+  const router = useRouter()
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,7 +51,19 @@ export function FormAddCar() {
   });
 
   const onSubmit = async(values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    setOpenDialog(false)
+    try {
+      await axios.post('/api/car', values)
+      toast({
+        title: 'Car created ✅'
+      })
+      router.refresh()
+    } catch (error) {
+      toast({
+        title: 'Something went wrong',
+        variant: 'destructive'
+      })
+    }
   }
 
   const { isValid } = form.formState
