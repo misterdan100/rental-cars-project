@@ -19,9 +19,13 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { UploadButton } from "@/utils/uploadthing";
+import { useState } from "react";
 
 
 export function FormAddCar() {
+  const [photoUploaded, setPhotoUploaded] = useState(false)
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,6 +46,8 @@ export function FormAddCar() {
     console.log(values)
   }
 
+  const { isValid } = form.formState
+
 
   return (
     <Form {...form}>
@@ -56,6 +62,7 @@ export function FormAddCar() {
                 <FormControl>
                   <Input placeholder="Tesla Model S Plaid" {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -74,6 +81,7 @@ export function FormAddCar() {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -98,6 +106,7 @@ export function FormAddCar() {
                     <SelectItem value="automatic">Automatic</SelectItem>
                   </SelectContent>
                 </Select>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -124,6 +133,7 @@ export function FormAddCar() {
                     <SelectItem value="7">7</SelectItem>
                   </SelectContent>
                 </Select>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -150,6 +160,7 @@ export function FormAddCar() {
                     <SelectItem value="hybrid">Hybrid</SelectItem>
                   </SelectContent>
                 </Select>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -177,14 +188,56 @@ export function FormAddCar() {
                     <SelectItem value="luxe">De luxe</SelectItem>
                   </SelectContent>
                 </Select>
+                <FormMessage />
               </FormItem>
             )}
           />
 
-        
+          <FormField
+            control={form.control}
+            name="photo"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Car Image</FormLabel>
+                <FormControl>
+                  {photoUploaded ? (
+                    <p className="text-sm">Image Uploaded!</p>
+                  ) : (
+                    <UploadButton
+                      className="rounded-lg bg-slate-600/20 text-slate-800 outline-dotted outline-3"
+                      {...field}
+                      endpoint="photo"
+                      onClientUploadComplete={(res) => {
+                        form.setValue("photo", res?.[0].url);
+                        setPhotoUploaded(true);
+                      }}
+                      onUploadError={(error: Error) => {
+                        console.log(error);
+                      }}
+                    />
+                  )}
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="priceDay"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Price per Day</FormLabel>
+                <FormControl>
+                  <Input placeholder="$20" type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full mt-5" disabled={!isValid}>Create car</Button>
       </form>
     </Form>
   );
