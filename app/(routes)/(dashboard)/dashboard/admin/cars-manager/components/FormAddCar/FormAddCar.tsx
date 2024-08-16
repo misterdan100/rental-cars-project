@@ -78,7 +78,7 @@ export function FormAddCar(props: FormAddCarProps) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Car Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Tesla Model S Plaid" {...field} />
                 </FormControl>
