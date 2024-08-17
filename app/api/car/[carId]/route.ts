@@ -50,4 +50,3 @@ export async function DELETE(req: Request, {params}: {params: { carId: string}})
         return new NextResponse('Internal Error', {status: 500})
     }
 }
-

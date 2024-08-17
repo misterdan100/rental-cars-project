@@ -4,7 +4,7 @@ export const dataAdminSidebar = [
     {
         icon: SquareGanttChart,
         label: 'Manage your cars',
-        href: '/manage'
+        href: '/dashboard/admin/cars-manager'
     },
     {
         icon: Calendar,
