@@ -16,7 +16,7 @@ export default function FirstBlock() {
         </h1>
 
         <p className="text-lg mt-2 lg:mt-5 lg:text-xl max-w-sm">
-          Don't deny yourself pleasure of driving the best premium cars from
+          Dont deny yourself pleasure of driving the best premium cars from
           around the world here and now
         </p>
       </Reveal>

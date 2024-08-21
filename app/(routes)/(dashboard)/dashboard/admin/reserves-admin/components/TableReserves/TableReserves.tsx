@@ -32,7 +32,7 @@ export function TableReserves(props: TableReservesProps) {
       </TableHeader>
       <TableBody>
         {orders.map((order) => (
-          <TableRow>
+          <TableRow key={order.id}>
             <TableCell className="font-medium">{new Date(order.createdAt).toLocaleDateString('en-US')}</TableCell>
             <TableCell className="text-center">{order.userId}</TableCell>
             <TableCell className="text-center">{order.carName}</TableCell>
