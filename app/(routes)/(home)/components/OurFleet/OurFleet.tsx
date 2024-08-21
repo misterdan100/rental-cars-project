@@ -22,7 +22,7 @@ export function OurFleet() {
         ))}
       </div>
 
-      //TODO: get cars from db on endpoint
+      {/* //TODO: get cars from db on endpoint */}
 
       <div className="mb-10">
         <div className="grid grid-cols-3 gap-x-6 mb-6">

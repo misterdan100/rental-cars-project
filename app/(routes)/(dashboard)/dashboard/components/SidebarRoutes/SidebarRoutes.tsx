@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@clerk/nextjs";
 import { dataGeneralSidebar } from "./SidebarRoutes.data";
 import { dataAdminSidebar } from "./dataAdminSidebar.data";
+import { isAdministrator } from "@/lib/isAdministrator";
 import SidebarItem from "../SidebarItem/SidebarItem";
 import Link from "next/link";
 
@@ -21,12 +22,14 @@ export default function SidebarRoutes() {
 
         <Separator />
 
-        <div className="p-2 md:p-6">
-          <p className="mb-2 text-slate-500">ADMIN</p>
-          {dataAdminSidebar.map((item) => (
-            <SidebarItem key={item.label} item={item} />
-          ))}
-        </div>
+        {!isAdministrator(userId) && (
+          <div className="p-2 md:p-6">
+            <p className="mb-2 text-slate-500">ADMIN</p>
+            {dataAdminSidebar.map((item) => (
+              <SidebarItem key={item.label} item={item} />
+            ))}
+          </div>
+        )}
       </div>
 
       <div>

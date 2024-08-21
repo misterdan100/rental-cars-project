@@ -4,6 +4,7 @@ import SliderBrands from "./components/SliderBrands/SliderBrands";
 import Features from "./components/Features/Features";
 import { OurFleet } from "./components/OurFleet";
 import { DriveToday } from "./components/DriveToday";
+import { Credits } from "./components/Credits";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Features />
       <OurFleet />
       <DriveToday />
+      <Credits />
     </div>
   );
 }

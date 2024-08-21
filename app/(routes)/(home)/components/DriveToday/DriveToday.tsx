@@ -5,8 +5,8 @@ import Link from "next/link"
 
 export function DriveToday() {
   return (
-    <div className="p-6 lg:my-16 max-w-7xl mx-auto">
-        <div className="bg-[url('/images/background-2.jpg')] bg-center bg-no-repeat bg-cover rounded-xl p-6 lg:p-32 relative">
+    <div className="p-6 lg:my-16 max-w-7xl mx-auto ">
+        <div className="bg-[url('/images/background-2.jpg')] bg-center bg-no-repeat bg-cover rounded-xl p-6 lg:p-32 relative overflow-hidden">
             <div className="lg:flex gap-x-6">
                 <div>
                     <h3 className="text-4xl text-white ">Drive your dream car Today</h3>
@@ -19,7 +19,7 @@ export function DriveToday() {
                 </div>
 
                 <Reveal 
-                    position="botton"
+                    position='right'
                     className="lg:absolute lg:-right-32 top-5"
                 >
                     <Image src='/images/audi.png' alt="Car Drive" width={550} height={250}/>
