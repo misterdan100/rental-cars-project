@@ -54,10 +54,7 @@ export default function ListCars(props: ListCarsProps) {
                             <Fuel className="w-4 h-4 mr-2" strokeWidth={1}/>
                             {engine}
                         </p>
-                        <p className="flex items-center">
-                            <Fuel className="w-4 h-4 mr-2" strokeWidth={1}/>
-                            {engine}
-                        </p>
+
                         <p className="flex items-center">
                             <Gauge className="w-4 h-4 mr-2" strokeWidth={1}/>
                             {cv} CV
